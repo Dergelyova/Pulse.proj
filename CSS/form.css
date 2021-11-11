@@ -1,31 +1,35 @@
-body {
+/* body {
     background-color: #00001C;
     height: 100%;
     position: absolute;
     width: 100%;
     font-family: 'Noto Sans', sans-serif;
-}
+} */
 
 form {
+    display: flex;
+    align-content: center;
     box-sizing: border-box;
     margin: 30px auto;
     padding: 20px auto;
-    width: 400px;
+    width: 500px;
     border-radius: 4px;
     border: 1px solid white;
 }
 
 ul {
     list-style: none;
+    margin: 16px 0px;
+    padding-left: 40px;
 }
 
 ul li+li {
-    margin-top: 12px;
+    margin-top: 18px;
 }
 
 label {
     color: white;
-    font-size: 14px;
+    font-size: 18px;
     font-style: normal;
 }
 
@@ -34,9 +38,9 @@ input {
     border: none;
     border-bottom: 1px solid white;
     box-sizing: border-box;
-    font-size: 14px;
+    font-size: 18px;
     color: white;
-    width: 300px;
+    width: 400px;
 }
 
 
@@ -98,6 +102,14 @@ input::-webkit-input-placeholder {
 #pace:focus,
 #vdot:focus {
     border: none;
+}
+
+#submit {
+    margin: 16px auto;
+}
+
+select {
+    font-size: 18px;
 }
 
 

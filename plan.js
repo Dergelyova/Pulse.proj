@@ -34,11 +34,24 @@ class TrainingPlan {
     static easy = "Відновлююче";
     static threshold = "Порогове";
     static long = "Довге";
+    static interval = "Інтервальне";
+    static repeat = "Прискорення";
     count() {
         if (this.user.numberOfTrainings === 3) {
             this.tuesday = new Training(this.user.easyPace, Math.round(this.user.mileage * 0.27), TrainingPlan.easy);
             this.thursday = new FastTraining(this.user.thresholdPace, Math.round(this.user.mileage * 50), TrainingPlan.threshold, Math.round(this.user.mileage * 0.1), Math.round(this.user.mileage * 0.06), 3, Math.round(this.user.mileage * 10));
             this.sunday = new Training(this.user.easyPace, Math.round(this.user.mileage * 0.4), TrainingPlan.long);
+        } else if (this.user.numberOfTrainings === 4) {
+            this.monday = new Training(this.user.easyPace, Math.round(this.user.mileage * 0.17), TrainingPlan.easy);
+            this.wednesday = new FastTraining(this.user.intervalPace, Math.round(this.user.mileage * 20), TrainingPlan.interval, Math.round(this.user.mileage * 0.1), Math.round(this.user.mileage * 0.06), 6, Math.round(this.user.mileage * 10));
+            this.friday = new Training(this.user.easyPace, Math.round(this.user.mileage * 0.17), TrainingPlan.easy);
+            this.sunday = new Training(this.user.easyPace, Math.round(this.user.mileage * 0.33), TrainingPlan.long);
+        } else if (this.user.numberOfTrainings === 5) {
+            this.monday = new Training(this.user.easyPace, Math.round(this.user.mileage * 0.14), TrainingPlan.easy);
+            this.tuesday = new FastTraining(this.user.repeatPace, Math.round(this.user.mileage * 10), TrainingPlan.repeat, Math.round(this.user.mileage * 0.06), Math.round(this.user.mileage * 0.02), 5, Math.round(this.user.mileage * 10));
+            this.wednesday = new Training(this.user.easyPace, Math.round(this.user.mileage * 0.14), TrainingPlan.easy);
+            this.friday = new FastTraining(this.user.intervalPace, Math.round(this.user.mileage * 20), TrainingPlan.interval, Math.round(this.user.mileage * 0.07), Math.round(this.user.mileage * 0.02), 5, Math.round(this.user.mileage * 10));
+            this.saturday = new Training(this.user.easyPace, Math.round(this.user.mileage * 0.32), TrainingPlan.long);
         }
     }
 }
@@ -65,9 +78,6 @@ button.addEventListener('click', () => {
             let userPlan = new TrainingPlan(user);
             userPlan.count();
             console.log(userPlan);
-            console.log(userPlan.tuesday);
-            console.log(userPlan.tuesday.type);
-            console.log(userPlan.tuesday.getText());
             document.querySelector(".plan-table").style.visibility = "visible";
             placeTraining(userPlan);
         }
@@ -100,6 +110,7 @@ function placeTraining(plan) {
     for (let i = 0; i < week.length; i++) {
         if (plan[week[i]] === undefined) {
             document.querySelector(`#${week[i]} .tr-type`).innerHTML = "Відпочинок";
+            document.querySelector(`#${week[i]} .tr-content`).innerHTML = "";
         } else {
             document.querySelector(`#${week[i]} .tr-type`).innerHTML = plan[week[i]].type;
             document.querySelector(`#${week[i]} .tr-content`).innerHTML = plan[week[i]].getText();

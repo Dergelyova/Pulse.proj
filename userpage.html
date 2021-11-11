@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
     <link rel="stylesheet" href="CSS/userpage.css">
 </head>
 
@@ -39,7 +38,7 @@
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
-                    <option value="6">6</option>
+                    <!-- <option value="6">6</option> -->
                 </select>
                 </div>
                 <div class="select-sector" id="mileage-sector">
@@ -52,9 +51,9 @@
                 <thead>
                     <tr>
                         <th width="10%">День</th>
-                        <th width="20%">Тип тренування</th>
-                        <th width="60%">Зміст тренування</th>
-                        <th width="10%">КМ</th>
+                        <th width="25%">Тип тренування</th>
+                        <th width="65%">Зміст тренування</th>
+                        <!-- <th width="10%">КМ</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -62,43 +61,43 @@
                         <td class="tr-day">ПН</td>
                         <td class="tr-type"></td>
                         <td class="tr-content"></td>
-                        <td class=tr-km></td>
+                        <!-- <td class=tr-km></td> -->
                     </tr>
                     <tr id="tuesday">
                         <td class="tr-day">ВТ</td>
                         <td class="tr-type"></td>
                         <td class="tr-content"></td>
-                        <td class=tr-km></td>
+                        <!-- <td class=tr-km></td> -->
                     </tr>
                     <tr id="wednesday">
                         <td class="tr-day">СР</td>
                         <td class="tr-type"></td>
                         <td class="tr-content"></td>
-                        <td class=tr-km></td>
+                        <!-- <td class=tr-km></td> -->
                     </tr>
                     <tr id="thursday">
                         <td class="tr-day">ЧТ</td>
                         <td class="tr-type"></td>
                         <td class="tr-content"></td>
-                        <td class=tr-km></td>
+                        <!-- <td class=tr-km></td> -->
                     </tr>
                     <tr id="friday">
                         <td class="tr-day">ПТ</td>
                         <td class="tr-type"></td>
                         <td class="tr-content"></td>
-                        <td class=tr-km></td>
+                        <!-- <td class=tr-km></td> -->
                     </tr>
                     <tr id="saturday">
                         <td class="tr-day">СБ</td>
                         <td class="tr-type"></td>
                         <td class="tr-content"></td>
-                        <td class=tr-km></td>
+                        <!-- <td class=tr-km></td> -->
                     </tr>
                     <tr id="sunday">
                         <td class="tr-day">НД</td>
                         <td class="tr-type"></td>
                         <td class="tr-content"></td>
-                        <td class=tr-km></td>
+                        <!-- <td class=tr-km></td> -->
                     </tr>
                 </tbody>
             </table>
@@ -143,7 +142,7 @@
         let threeTrainings = [30, 35, 40];
         let fourTrainings = [30, 35, 40, 45, 50];
         let fiveTrainings = [50, 55, 60];
-        let sixTrainings = [60, 65, 70];
+        // let sixTrainings = [60, 65, 70];
 
         $('#days-select').change(addList)
         addList();
