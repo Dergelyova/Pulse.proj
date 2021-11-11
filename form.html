@@ -41,39 +41,12 @@
                     <span id="invalid-time">Вкажіть час у форматі <br> hh:mm:ss</span>
                 </div>
             </li>
-            <!-- <li>
-                <button type="button" id="calculate">Рахувати VDOT</button>
-            </li>
-            <li>
-                <label>Pace</label>
-                <input type="text" id="pace" name="pace" value="" readonly>
-            </li>
-            <li>
-                <label>VDOT</label>
-                <input type="text" name="vdot" id="vdot" value="" readonly>
-            </li> -->
             <li>
                 <button type="submit" id="submit">Створити профіль</button>
             </li>
         </ul>
     </form>
     <script>
-        // $("#calculate").click(function(event) {
-        //     event.preventDefault();
-        //     $.ajax({
-        //         type: "POST",
-        //         url: "http://low-pulse.eu-central-1.elasticbeanstalk.com/runner/vdot",
-        //         data: {
-        //             distance: $("#distance").val(),
-        //             time: `${$("#hh").val()}:${$("#mm").val()}:${$("#ss").val()}`
-        //         },
-        //         success: function(data) {
-        //             $("#vdot").val(data.vdot);
-        //             $("#pace").val(data.pace);
-        //         }
-
-        //     });
-        // });
         $("#form").submit(function(event) {
             let form = $(this).serialize();
             form += `&time=${$("#hh").val()}:${$("#mm").val()}:${$("#ss").val()}`;
