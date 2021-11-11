@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="CSS/table.css">
+</head>
+
+<body>
+    <div class="page-header container">
+        <h2 class="back-header">ATHLETES</h2>
+        <h3 class="front-header">ATHLETES</h3>
+    </div>
+    <hr>
+    <table class="table container">
+        <thead>
+            <tr>
+                <th>Атлет</th>
+                <th>VDOT</th>
+                <th>Кілометраж в тиждень</th>
+                <th>Кількість трен./тижд.</th>
+                <th>Найближча гонка</th>
+                <th>Очікуваний результат</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+    </table>
+    <script>
+        $.getJSON("http://low-pulse.eu-central-1.elasticbeanstalk.com/runner", function(data) {
+            $.each(data, function createRow() {
+                let newRow = document.createElement("tr");
+                newRow.classList.add("hvr");
+                newRow.setAttribute("onclick", `document.location = '/userpage?id=${this.id}'`)
+                newRow.append(newCell(`${this.name} ${this.surname}`));
+                newRow.append(newCell(`${this.vdot}`));
+                newRow.append(newCell(`${this.mileage}`));
+                newRow.append(newCell(`${this.numberOfTrainings}`));
+                newRow.append(newCell(`null`));
+                newRow.append(newCell(`null`));
+                document.querySelector('tbody').append(newRow);
+
+            })
+        });
+
+        function newCell(str) {
+            if (str === "null") str = "";
+            let newEl = document.createElement("td");
+            newEl.innerHTML = str;
+            return newEl
+        }
+        // function createRow(data) {
+        //     let newRow = document.createElement("tr");
+        //     newRow.prepend(`<td>${this.name} ${this.surname}</td>`);
+        //     document.querySelector('tbody').append(newRow);
+
+        // }
+        // let users = [];
+        // class Runner {
+        //     constructor(id, name, surname, vdot, mileage, numberOfTrainings, email) {
+        //         this.id = id;
+        //         this.name = name;
+        //         this.surname = surname;
+        //         this.vdot = vdot;
+        //         this.mileage = mileage;
+        //         this.numberOfTrainings = numberOfTrainings;
+        //         this.email = email;
+        //     }
+        //     showName() {
+        //         alert(this.name);
+        //     }
+        // }
+    </script>
+</body>
+
+</html>

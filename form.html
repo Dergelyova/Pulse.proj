@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/form.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="form">
+        <ul>
+            <li>
+                <input type="text" placeholder="Ім'я" name="name" required>
+            </li>
+            <li>
+                <input type="text" placeholder="Прізвище" name="surname" required>
+            </li>
+            <li>
+                <input type="email" placeholder="Електронна пошта" pattern="^(.+)@.+\..+" name="email" required>
+            </li>
+            <li>
+                <label for="distance">Дистанція</label>
+                <select id="distance" name="distance" required>
+                <option style="color: rgba(0, 0, 0, 0.308);">Дистанція</option>
+                <option value="42.2">Марафон</option>
+                <option value="21.1">Напівмарафон</option>
+                <option value="10">10 км</option>
+                <option value="5">5 км</option>
+                </select>
+            </li>
+            <li>
+                <div id="time">
+                    <label for="time">Час</label>
+                    <input type="text" maxlength="2" pattern="0[0-7]?" id="hh" placeholder="hh">
+                    <input type="text" maxlength="2" pattern="[0-5]\d?" id="mm" placeholder="mm">
+                    <input type="text" maxlength="2" pattern="[0-5]\d?" id="ss" placeholder="ss">
+                    <span id="invalid-time">Вкажіть час у форматі <br> hh:mm:ss</span>
+                </div>
+            </li>
+            <!-- <li>
+                <button type="button" id="calculate">Рахувати VDOT</button>
+            </li>
+            <li>
+                <label>Pace</label>
+                <input type="text" id="pace" name="pace" value="" readonly>
+            </li>
+            <li>
+                <label>VDOT</label>
+                <input type="text" name="vdot" id="vdot" value="" readonly>
+            </li> -->
+            <li>
+                <button type="submit" id="submit">Створити профіль</button>
+            </li>
+        </ul>
+    </form>
+    <script>
+        // $("#calculate").click(function(event) {
+        //     event.preventDefault();
+        //     $.ajax({
+        //         type: "POST",
+        //         url: "http://low-pulse.eu-central-1.elasticbeanstalk.com/runner/vdot",
+        //         data: {
+        //             distance: $("#distance").val(),
+        //             time: `${$("#hh").val()}:${$("#mm").val()}:${$("#ss").val()}`
+        //         },
+        //         success: function(data) {
+        //             $("#vdot").val(data.vdot);
+        //             $("#pace").val(data.pace);
+        //         }
+
+        //     });
+        // });
+        $("#form").submit(function(event) {
+            let form = $(this).serialize();
+            form += `&time=${$("#hh").val()}:${$("#mm").val()}:${$("#ss").val()}`;
+            event.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "http://low-pulse.eu-central-1.elasticbeanstalk.com/runner",
+                data: form,
+                success: function(data) {
+                    document.location.assign('/userpage?id=' + data);
+                }
+
+            });
+        });
+    </script>
+</body>
+
+</html>

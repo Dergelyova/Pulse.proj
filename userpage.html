@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="CSS/userpage.css">
+</head>
+
+<body>
+    <header>
+        <div class="page-header container">
+            <h2 class="back-header">PROFILE</h2>
+            <h3 class="front-header">PROFILE</h3>
+        </div>
+        <hr>
+    </header>
+    <div class="profile-page container">
+        <div class="profile">
+            <div class="card" id="athlete-profile">
+                <div class="avatar-athlete">
+                    <img alt="" class="avatar-img" src="img/avatar.png">
+                </div>
+                <div class="text-content">
+                    <h4 class="fullname" style="white-space: nowrap;"></h4>
+                    <p>VDOT: <span class="vdot"></span> </p>
+                </div>
+            </div>
+        </div>
+        <div class="plan-sector">
+            <div class="selection">
+                <div class="select-sector" id="days-sector">
+                    <label for="days-select">Оберіть кількість тренувань у тиждень:</label>
+                    <select id="days-select">
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+                </div>
+                <div class="select-sector" id="mileage-sector">
+                    <label for="mileage-select">Оберіть тижневий кілометраж:</label>
+                    <select id="mileage-select"></select>
+                </div>
+                <button type="button" id="generate">Генерувати план</button>
+            </div>
+            <table class="plan-table" style="visibility: hidden;">
+                <thead>
+                    <tr>
+                        <th width="10%">День</th>
+                        <th width="20%">Тип тренування</th>
+                        <th width="60%">Зміст тренування</th>
+                        <th width="10%">КМ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="monday">
+                        <td class="tr-day">ПН</td>
+                        <td class="tr-type"></td>
+                        <td class="tr-content"></td>
+                        <td class=tr-km></td>
+                    </tr>
+                    <tr id="tuesday">
+                        <td class="tr-day">ВТ</td>
+                        <td class="tr-type"></td>
+                        <td class="tr-content"></td>
+                        <td class=tr-km></td>
+                    </tr>
+                    <tr id="wednesday">
+                        <td class="tr-day">СР</td>
+                        <td class="tr-type"></td>
+                        <td class="tr-content"></td>
+                        <td class=tr-km></td>
+                    </tr>
+                    <tr id="thursday">
+                        <td class="tr-day">ЧТ</td>
+                        <td class="tr-type"></td>
+                        <td class="tr-content"></td>
+                        <td class=tr-km></td>
+                    </tr>
+                    <tr id="friday">
+                        <td class="tr-day">ПТ</td>
+                        <td class="tr-type"></td>
+                        <td class="tr-content"></td>
+                        <td class=tr-km></td>
+                    </tr>
+                    <tr id="saturday">
+                        <td class="tr-day">СБ</td>
+                        <td class="tr-type"></td>
+                        <td class="tr-content"></td>
+                        <td class=tr-km></td>
+                    </tr>
+                    <tr id="sunday">
+                        <td class="tr-day">НД</td>
+                        <td class="tr-type"></td>
+                        <td class="tr-content"></td>
+                        <td class=tr-km></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="plan.js"></script>
+    <script>
+        $(document).ready(function() {
+            let id = document.location.search.substring(document.location.search.indexOf("=") + 1);
+            $.ajax({
+                type: "GET",
+                url: `http://low-pulse.eu-central-1.elasticbeanstalk.com/runner/${id}`,
+                success: function(data) {
+                    $(".fullname").html(`${data.name} ${data.surname}`);
+                    $(".vdot").html(data.vdot);
+                    // localStorage.setItem('user', JSON.stringify(data));
+                }
+            });
+        });
+
+
+        function addKmList(arr) {
+            for (let i = 0; i < arr.length; i++) {
+                let newOpt = new Option(arr[i], arr[i]);
+                $('#mileage-select').append(newOpt);
+            }
+        }
+
+        function addList() {
+            $('#mileage-select').html("");
+            if ($('#days-select').val() === '3') {
+                addKmList(threeTrainings);
+            } else if ($('#days-select').val() === '4') {
+                addKmList(fourTrainings);
+            } else if ($('#days-select').val() === '5') {
+                addKmList(fiveTrainings);
+            } else if ($('#days-select').val() === '6') {
+                addKmList(sixTrainings);
+            }
+        }
+
+        let threeTrainings = [30, 35, 40];
+        let fourTrainings = [30, 35, 40, 45, 50];
+        let fiveTrainings = [50, 55, 60];
+        let sixTrainings = [60, 65, 70];
+
+        $('#days-select').change(addList)
+        addList();
+    </script>
+</body>
+
+</html>

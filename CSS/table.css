@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+body {
+    background-color: #00001C;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 0px 20px;
+}
+
+.page-header {
+    font-family: 'Oswald', sans-serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.back-header {
+    font-size: 108px;
+    color: rgba(255, 255, 255, 0.05);
+    margin: 0px;
+}
+
+.front-header {
+    font-size: 64px;
+    color: white;
+    margin-top: -120px;
+    margin-bottom: 0px;
+}
+
+hr {
+    border: none;
+    /* Убираем границу */
+    background-color: rgba(255, 255, 255, 0.24);
+    /* Цвет линии для IE6-7 */
+    height: 1.5px;
+    /* Толщина линии */
+}
+
+
+/*таблица*/
+
+.table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    /* margin: */
+    padding-left: 0px;
+    background-color: white;
+}
+
+@media (max-width:1024px) {
+    .container {
+        max-width: 780px;
+    }
+}
+
+.table th,
+.table td {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    padding: 10px 10px;
+}
+
+thead th:first-child,
+tr td:first-child {
+    background-color: #FFC658;
+    width: 20%;
+    font-weight: 700;
+}
+
+thead th:nth-child(3),
+tr td:nth-child(3) {
+    background-color: #FFE6B7;
+}
+
+thead th:nth-child(5),
+tr td:nth-child(5) {
+    background-color: #FFE6B7;
+}
+
+.table tr {
+    transition: all .3s;
+}
+
+#tbody .hvr:hover td {
+    cursor: pointer;
+    /* transform: scale(1.012); */
+    background-color: rgb(253, 207, 107) !important;
+}
+
+.table tr {
+    border-top: 1px solid #00001C;
+}
+
+.table td,
+th {
+    border-right: 1px solid #00001C;
+}
